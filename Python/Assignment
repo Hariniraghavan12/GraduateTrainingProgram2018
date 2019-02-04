@@ -1,0 +1,84 @@
+1).email validation
+import re
+def isValidEmail(email):
+     if len(email) > 7:
+         if re.match(r"\b[A-Za-z0-9._%+-]+@[\w]+\.[a-z]{3}\b", email) != None:
+             return True
+         else:
+             return False
+email=raw_input("enter email address:")
+
+if isValidEmail(email) == True :
+    print "This is a valid email address"
+else:
+    print "This is not a valid email address"
+
+
+
+2.)extracting string within quotes
+import re
+var="ABC is in 'quotes'"
+res=re.search(r"\'\w+\'",var)
+#print(res.group(0))
+wo_quotes=re.search(r"\w+",res.group())
+print(wo_quotes.group())
+
+
+
+3.)phone number validation
+import re
+ph=raw_input("enter phone number:")
+res=re.match(r"\+\d{2}\d{10}",ph)
+if(res):
+    print("valid:{}".format(res.group(0)))
+else:
+    print("not valid")
+
+
+
+4.)printing schema name and table name
+import re
+schemaname=[]
+temp=[]
+tablename=[]
+str1="provider data is in ccw_view_INT.Prov.Provider address data is in ccw_view_sys.Prov_Address"
+res=re.split(r"[\.]*[\.]",str1)
+print(res)
+for i in range(len(res)):
+    if(i%2!=0):
+        tablename.append(res[i])
+    else:
+        temp=re.split(" ",res[i])
+        schemaname.append(temp[-1])
+print schemaname
+print tablename
+
+
+
+5.)importing csv file while inserting data
+import csv
+import sqlite3
+conn=sqlite3.connect("csvreader.db")
+cur=conn.cursor()
+cur.execute("create table stud(id int,name varchar(30),age int,salary int)")
+conn.commit()
+
+csvfile=open('namelist.csv','r')
+creader=csv.reader(csvfile,delimiter=',')
+for i in creader:
+    cur.execute("insert into syud values(?,?,?,?)",i)
+
+cur.execute("select * from stud")
+res=cur.fetchall()
+
+for i in res:
+    print(i)
+
+csvfile.close()
+conn.commit()
+conn.close()
+
+
+
+
+

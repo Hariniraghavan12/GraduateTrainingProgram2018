@@ -69,22 +69,22 @@ select distinct e.name,e1.managerid from employee e join employee e1 on e.e_id=e
 ROBERT SWIFT|A187
 
 6)Select the total number of Employees in Communications departments
-select count(name),dep_id from employee where dep_id='D02';
+select count(*) from employee e join dept d on e.dep_id=d.dep_id where d.depname='COMMUNICATIONS';
 
-6|D02
+6
 
 7)Select the Employee in Finance Department who has the top salary
- select name from employee where dep_id='D05' order by salary desc limit 1;
+ select e.name from employee e join dept d on e.dep_id=d.dep_id where d.depname='FINANCE' order by e.salary desc limit 1;
  
  ADAM WAYNE
 
 8)Select the Employee in product depatment who has the least salary
-select name from employee where dep_id='D03' order by salary limit 1;
+select e.name from employee e join dept d on e.dep_id=d.dep_id where d.depname='PRODUCT' order by e.salary limit 1;
 
 NICK MARTIN
 
 9)Select the count of Empolyees in Health with maximum salary
-select count(e_id),salary from employee where dep_id='D01' group by salary order by salary desc limit 1;
+select count(e.e_id),e.salary from employee e join dept d on e.dep_id=d.dep_id where d.depname='HEALTH' group by e.salary order by e.salary desc limit 1;
 
 1|94791
 

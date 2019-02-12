@@ -42,11 +42,13 @@ select name from employee order by salary limit 1;
 JOHN HELLEN
 
 3)Select the Employee who does not have a manager in the department table
-select name from employee where managerid not in(select managerid from employee where managerid is not null);
-                         or
-select name from employee where managerid is null;
-
-EMPTY SET
+select depmanager from dept where dep_id not in(select e_id from employee);
+ 
+TIM ARCHER
+ADAM JUSTIN
+BRUCE WILLS
+ROBERT SWIFT
+NATASHA STEVENS
 
 4)Select the Employee who is also a Manager
 select distinct e.name,e1.managerid from employee e join employee e1 on e.e_id=e1.managerid;
@@ -68,3 +70,27 @@ ROBERT SWIFT|A187
 
 6)Select the total number of Employees in Communications departments
 select count(name),dep_id from employee where dep_id='D02';
+
+6|D02
+
+7)Select the Employee in Finance Department who has the top salary
+ select name from employee where dep_id='D05' order by salary desc limit 1;
+ 
+ ADAM WAYNE
+
+8)Select the Employee in product depatment who has the least salary
+select name from employee where dep_id='D03' order by salary limit 1;
+
+NICK MARTIN
+
+9)Select the count of Empolyees in Health with maximum salary
+select count(e_id),salary from employee where dep_id='D01' group by salary order by salary desc limit 1;
+
+1|94791
+
+10)Select the Employees who report to Natasha Stevens
+select name from employee where managerid in(select e_id from employee where name='NATASHA STEVENS');
+
+ADAM WAYNE
+JOSEPH ANGELIN
+ 

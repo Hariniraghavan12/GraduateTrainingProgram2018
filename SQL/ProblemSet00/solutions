@@ -94,3 +94,23 @@ select name from employee where managerid in(select e_id from employee where nam
 ADAM WAYNE
 JOSEPH ANGELIN
  
+11)Display the Employee name,Employee count,Dep name,Dept manager in the Health department
+select e.name,d.depname,d.depmanager from employee e join dept d on e.dep_id=d.dep_id where depname='HEALTH' ;
+
+
+
+12)Display the Department id,Employee ids and Manager ids for the Communications department
+select d.dep_id,e.e_id,e.managerid from employee e join dept d on e.dep_id=d.dep_id where d.depname='COMMUNICATIONS';
+
+
+13)Select the Average Expenses for Each dept with Dept id and Dept name
+select avg(e.salary),e.dep_id,d.depname from employee e join dept d on e.dep_id=d.dep_id group by d.dep_id;
+
+
+14)Select the total expense for the department finance
+select sum(e.salary) from employee e join dept d on e.dep_id=d.dep_id where depname='FINANCE';
+
+
+15)Select the department which spends the least with Dept id and Dept manager name
+
+

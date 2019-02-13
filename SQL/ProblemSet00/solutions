@@ -97,20 +97,75 @@ JOSEPH ANGELIN
 11)Display the Employee name,Employee count,Dep name,Dept manager in the Health department
 select e.name,d.depname,d.depmanager from employee e join dept d on e.dep_id=d.dep_id where depname='HEALTH' ;
 
+MARTIN TREDEAU|HEALTH|TIM ARCHER
+PAUL VINCENT|HEALTH|TIM ARCHER
+TIM ARCHER|HEALTH|TIM ARCHER
+BRAD MICHAEL|HEALTH|TIM ARCHER
+EDWARD CANE|HEALTH|TIM ARCHER
+JOHN HELLEN|HEALTH|TIM ARCHER
 
 
 12)Display the Department id,Employee ids and Manager ids for the Communications department
 select d.dep_id,e.e_id,e.managerid from employee e join dept d on e.dep_id=d.dep_id where d.depname='COMMUNICATIONS';
 
+D02|A116|A187
+D02|A198|A187
+D02|A187|A298
+D02|A121|A187
+D02|A194|A187
+D02|A133|A187
+
 
 13)Select the Average Expenses for Each dept with Dept id and Dept name
 select avg(e.salary),e.dep_id,d.depname from employee e join dept d on e.dep_id=d.dep_id group by d.dep_id;
 
+54527.6666666667|D01|HEALTH
+48271.3333333333|D02|COMMUNICATIONS
+58517.5|D03|PRODUCT
+51913.3333333333|D04|INSURANCE
+56660.3333333333|D05|FINANCE
 
 14)Select the total expense for the department finance
 select sum(e.salary) from employee e join dept d on e.dep_id=d.dep_id where depname='FINANCE';
 
+169981
 
 15)Select the department which spends the least with Dept id and Dept manager name
+select d.depname,sum(e.salary),e.dep_id,d.depmanager from employee e join dept d on e.dep_id=
+d.dep_id group by e.dep_id order by sum(e.salary) limit 1;
 
+PRODUCT|117035|D03|BRUCE WILLS
+
+
+16)Select the count of Employees in each department
+select e.dep_id,count(e.e_id) from employee e join dept d on e.dep_id=d.dep_id group by depname;
+
+D02|6
+D05|3
+D01|6
+D04|3
+D03|2
+
+17)Select the count of Employees in each department having salary <10000
+select dep_id,count(e_id) from employee where salary<10000 group by dep_id;
+ 
+EMPTY SET
+
+
+18)Select the total number of Employees in Dept id D04
+select count(e_id) from employee where dep_id='D04';
+ 
+ 3
+ 
+ 
+19)Select all department details of the Department with Maximum Employees
+select d.dep_id,d.depname,d.depmanager,count(e.e_id) from employee e join dept d on e.dep_id=d.dep_id group by d.dep_id order by count(e.e_id) desc limit 2;
+
+D01|HEALTH|TIM ARCHER|6
+D02|COMMUNICATIONS|ADAM JUSTIN|6
+
+20)Select the Employees who has Tim Cook as their manager
+select e.name from employee e join dept d on e.dep_id=d.dep_id where d.depmanager='TIM COOK';
+
+EMPTY SET
 

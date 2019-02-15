@@ -1,0 +1,29 @@
+create table student(sno varchar(10) primary key,name varchar(30));
+create table mark(mno varchar(10) primary key,sno varchar(10) references student(sno),sem varchar(10),eng varchar(3),tam varchar(3),mat varchar(3),sci varchar(3),soc varchar(3));
+
+insert into student values('1','aaa');
+insert into student values('2','bbb');
+insert into student values('3','ccc');
+
+select * from student;
+
+insert into mark values('m01','1','sem1','50','50','60','60','70');
+insert into mark values('m02','2','sem1','60','70','50','80','40');
+insert into mark values('m03','3','sem1','A','50','60','60','70');
+insert into mark values('m04','1','sem2','76','50','60','60','70');
+insert into mark values('m05','2','sem2','67','56','60','64','70');
+insert into mark values('m06','3','sem2','78','56','60','65','76');
+insert into mark values('m07','1','sem3','98','59','66','69','75');
+insert into mark values('m08','2','sem3','56','76','A','67','72');
+insert into mark values('m09','3','sem3','45','78','56','65','71');
+
+
+select * from mark;
+
+select s.sno,s.name,m.sem,m.eng,m.tam,m.mat,m.sci,m.soc,(m.eng+m.tam+m.mat+m.sci+m.soc) as total,if(m.eng>=50 and m.tam>=50 and m.mat>=50 and m.sci>=50 and m.soc>=50,"PASS","FAIL") as res from student s inner join mark m on s.sno=m.sno WHERE sem='sem2';
+create table result(select s.sno,s.name,m.sem,m.eng,m.tam,m.mat,m.sci,m.soc,(m.eng+m.tam+m.mat+m.sci+m.soc) as total,if(m.eng>=50 and m.tam>=50 and m.mat>=50 and m.sci>=50 and m.soc>=50,"PASS","FAIL") as res  from student s inner join mark m on s.sno=m.sno where sem='sem2');
+desc result;
+select * from result;
+set @c:=0;
+select sno,name,total,res,@c:=@c+1 as rnk from result WHERE res="PASS" order by total desc;
+

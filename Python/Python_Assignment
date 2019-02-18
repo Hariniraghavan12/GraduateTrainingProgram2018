@@ -1,0 +1,22 @@
+import sqlite3
+from sqlite3 import OperationalError
+conn = sqlite3.connect("student.db")
+cursor=conn.cursor()
+
+fd=open('queries.sql','r')
+sqlfile=fd.read()
+fd.close()
+
+sqlcommands=sqlfile.split(';')
+
+for command in sqlcommands:
+    try:
+        row=cursor.execute(command)
+        for i in row:
+            try:
+                print(i)
+            except:
+                print("exception")
+    except:
+        print("exception")
+        

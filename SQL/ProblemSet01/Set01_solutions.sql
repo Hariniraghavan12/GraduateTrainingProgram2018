@@ -136,7 +136,13 @@ select count(*) from Booking where Date_From like '%-09-%';
 
 
 11.List the names and cities of guests who began a stay in New York in August.
+select g.Name,g.City from Guest g join Booking b on g.Guest_No=b.Guest_No join Hotel h on b.Hotel_No=h.Hotel_No where b.Date_From like '%-08-%' and h.City='New York';
 
+Adam Wayne|Pittsburgh
+Tara Cummings|Baltimore
+
+
+12.List the hotel names and room numbers of any hotel rooms that have not been booked.
  
 
 

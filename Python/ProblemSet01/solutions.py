@@ -104,13 +104,13 @@ print(sum)
 #and False otherwise. Hint: you might want to use the built-in str operation in.
 
 def isIn(str1,str2):
-    if(str1.find(str2)!=-1):
+   # if(str1.find(str2)!=-1):
+    if(str1 in str2 or str2 in str1):
         print("found!!")
     else:
         print("not found!!")
 
-isIn("harini","harish")
-
+isIn("hari","harini")
 
 #8.Implement a function that satisfies the specification. Use a try-except block.
 

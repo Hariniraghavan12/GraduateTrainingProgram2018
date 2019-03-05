@@ -8,8 +8,6 @@
 #A step size of -1 goes through the word backwards, so the slice [::-1] generates a reversed string. 
 #Use this idiom to write a one-line version of is_palindrome
 
-
-
 #Sol:
 def is_palindrome(string):
     rev_string=string[::-1]

@@ -143,15 +143,34 @@ Tara Cummings|Baltimore
 
 
 12.List the hotel names and room numbers of any hotel rooms that have not been booked.
+select h.Name,r.Room_No from Hotel h join Room r on h.Hotel_No=r.Hotel_No where r.Room_No not in(select Room_No from Booking where Room_No is not null);
  
+Empire Hotel|313
+Park Place|1289
+Brownstone Hotel|876
+Brownstone Hotel|898
+Clairmont Hotel|257
 
 
+13.List the hotel name and city of the hotel with the highest priced room.
+select h.Name,h.city,max(r.Price) from Hotel h join Room r on h.Hotel_No=r.Hotel_No;
+
+Park Place|New York|195.0
 
 
+14.List hotel names, room numbers, cities, and prices for hotels that have rooms with prices lower than the lowest priced room in a Boston hotel.
+select h.Name,r.Room_No,h.City,r.Price from Hotel h join Room r on h.Hotel_No=r.Hotel_No where r.Price<(select min(r.Price) from Hotel h join Room r on h.Hotel_No=r.Hotel_No where h.City='Boston');
+ 
+Brownstone Hotel|876|Toronto|124.0
+Brownstone Hotel|898|Toronto|124.0
 
 
-
-
+15.List the average price of a room grouped by city.
+select h.city,avg(r.Price) from Hotel h join Room r on h.Hotel_No=r.Hotel_No group by h.city;
+ 
+Boston|155.0
+New York|165.0
+Toronto|147.0 
 
 
 

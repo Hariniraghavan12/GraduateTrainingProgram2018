@@ -99,7 +99,7 @@ else:
 #don’t contain any of them. Can you find a combination of 5 forbidden letters that excludes the smallest number of words?
 
 #Sol:
-forb_list=[]
+'''forb_list=[]
 str2=''
 list2=[]
 count=0
@@ -115,7 +115,27 @@ def avoids(word,forb_list):
 word=raw_input("enter a word:")
 forbidden=raw_input("enter a forbidden string:")
 forb_list=forbidden.split(" ")
-avoids(word,forbidden)
+avoids(word,forbidden)'''
+
+#Sol:
+f_word = raw_input("Enter the string of forbidden letters")
+sentence = raw_input("Enter a word ")
+words=sentence.split(' ')
+
+list_1=[]
+def avoid():
+    for word in words:
+        count =0
+        for i in f_word:
+            if word.__contains__(i):
+                continue
+            else:
+                count+=1
+                if count==len(f_word):
+                    list_1.append(word)
+
+    print len(list_1)
+avoid()
 
 
 #7.Write a function named using_only() that takes a word and a string of letters, and that returns True if the word contains

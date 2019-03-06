@@ -91,6 +91,21 @@ plantFK|gardenerFK|locationFK|date1|amount|weight
 4|2|0|16-JUL-2012|23|0.52
 
 
+1.Write a valid SQL statement that calculates the total weight of all corn cobs that were picked from the garden
+select p.name,sum(pi.weight) AS TOTAL from plant p join picked pi on p.plantid=pi.plantFK where p.name='Corn';
+
+name|TOTAL
+Corn|17.54
+
+
+2.For some reason Erin has changed his location for picking the tomato to North. Write the corresponding query.
+
+
+
+
+ 
+
+
 
 
 

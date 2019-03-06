@@ -137,13 +137,26 @@ plantid|name
 5.List the amount of sunlight and water to all plants with names that start with letter 'c' or letter 'r'.
 select plantid,name,sunlight,water from plant where name like 'c%' or name like 'r%';
 
-
 plantid|name|sunlight|water
 0|Carrot|0.26|0.82
 2|Corn|0.44|0.76
 4|Radish|0.28|0.84
 
 
+6.Write a valid SQL statement that displays the plant name and the total amount of seed required for each plant that were plant in the garden. The output should be in descending order of plant name.
+select p.name,sum(pl.seeds) as Total_seeds from plant p join planted pl on p.plantid=pl.plantFK group by pl.plantFK order by p.name desc;
+
+name|Total_seeds
+Tomato|38
+Radish|30
+Lettuce|30
+Corn|32
+Carrot|42
+Beet|36
+
+
+7.Write a valid SQL statement that calculates the average number of items produced per seed planted for each plant type:( (Average Number of Items = Total Amount Picked / Total Seeds Planted.)
+                                                                                                             
 
 
 

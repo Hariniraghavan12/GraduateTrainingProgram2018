@@ -99,6 +99,45 @@ Corn|17.54
 
 
 2.For some reason Erin has changed his location for picking the tomato to North. Write the corresponding query.
+update picked set locationFK=(select locationid from location where name='North') where gardenerFK=(select gardenerid from gardener where name='Erin') and plantFK=(select plantid from plant where name='Tomato');
+
+select * from picked;
+
+plantFK|gardenerFK|locationFK|date1|amount|weight
+0|2|0|18-AUG-2012|28|2.32
+0|3|1|16-AUG-2012|12|1.02
+2|1|3|22-AUG-2012|52|12.96
+2|2|2|28-AUG-2012|18|4.58
+3|3|1|22-AUG-2012|15|3.84
+4|2|0|16-JUL-2012|23|0.52
+
+
+3.Insert a new column 'Exper' of type Number (30) to the 'gardener' table which stores Experience of the of person. 
+How will you modify this to varchar2(30).
+
+alter table gardener add column Exper Number(30);
+select * from gardener;
+ 
+gardenerid|name|age|Exper
+0|Mother|36|
+1|Father|38|
+2|Tim|15|
+3|Erin|12|
+ 
+alter table gardener modify column Exper Varchar2(30);
+
+
+4.Write a query to find the plant name which required seeds less than 20 which plant on 14-APR
+select p.plantid, p.name from plant p join planted pl on p.plantid=pl.plantFK where pl.date1='14-APR-2012' and pl.seeds<20;
+
+plantid|name
+0|Carrot
+
+
+5.List the amount of sunlight and water to all plants with names that start with letter 'c' or letter 'r'.
+
+
+
 
 
 

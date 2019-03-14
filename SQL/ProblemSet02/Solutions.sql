@@ -156,10 +156,15 @@ Beet|36
 
 
 7.Write a valid SQL statement that calculates the average number of items produced per seed planted for each plant type:( (Average Number of Items = Total Amount Picked / Total Seeds Planted.)
-                                                                                                             
+select pl.name,sum(pi.amount)/sum(p.seeds) as avg_items from picked pi join planted p on pi.plantFK=p.plantFK join plant pl on pl.plantid=pi.plantFK group by pl.plantid;
 
-
-
+name|avg_items
+Carrot|0
+Corn|2
+Tomato|0
+Radish|0
+                                                                                                                         
+                                                                                                                         
 
 
  

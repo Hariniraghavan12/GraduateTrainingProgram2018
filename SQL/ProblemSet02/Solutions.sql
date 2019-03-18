@@ -192,8 +192,15 @@ Tim|0|0
                                                                                                                          
                                                                                                                          
 10.Create a view that lists all the plant names picked from all locations except ’West’ in the month of August.
+create view plant_views as select p.name,l.name,pi.date1 from plant p join picked pi on pi.plantFK=p.plantid join location l on pi.locationFK=l.locationid where l.name!='West' and pi.date1 LIKE '%-AUG-%';
                                                                                                                          
+for select query:
                                                                                                                          
+name|name|date1
+Carrot|East|18-AUG-2012
+Carrot|North|16-AUG-2012
+Corn|South|22-AUG-2012
+Tomato|North|22-AUG-2012                                                                                                                       
                                                                                                                          
                                                                                                                          
                                                                                                                          

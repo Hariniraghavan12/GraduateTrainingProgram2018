@@ -165,6 +165,32 @@ Tomato|0
 Radish|0
                                                                                                                          
                                                                                                                          
+8.Write a valid SQL statement that would produce a result set like the following:
+                                                                                                                         
+name |  name  |    date    | amount 
+------|--------|------------|-------- 
+ Tim  | Radish | 2012-07-16 |     23 
+ Tim  | Carrot | 2012-08-18 |     28 
+                                                                                                                         
+  
+select g.name,p.name,pi.date1,pi.amount from picked pi join gardener g on pi.gardenerFK=g.gardenerid join plant p on pi.plantFK=p.plantid where g.name='Tim' and pi.date1 between '16-JUL-2012' and '18-AUG-2012';
+name|name|date1|amount
+Tim|Carrot|18-AUG-2012|28
+Tim|Radish|16-JUL-2012|23 
+                                                                                                                         
+ 
+                                                                                                                         
+9.Find out persons who picked from the same location as he/she planted.                                                                                                                      
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+                                                                                                                         
+                                                                                    
+                                                                                                                         
 
 
  

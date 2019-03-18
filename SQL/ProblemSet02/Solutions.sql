@@ -180,10 +180,18 @@ Tim|Radish|16-JUL-2012|23
                                                                                                                          
  
                                                                                                                          
-9.Find out persons who picked from the same location as he/she planted.                                                                                                                      
+9.Find out persons who picked from the same location as he/she planted.     
+select g.name,p.locationFK as planted_location,pi.locationFK as picked_location from gardener g join planted p on p.gardenerFK=g.gardenerid join picked pi on p.plantFK=pi.plantFK where p.locationFK=pi.locationFK;
+                                                                                                                         
+name|planted_location|picked_location
+Mother|0|0
+Father|1|1
+Father|3|3
+Tim|2|2
+Tim|0|0                                                                                                                        
                                                                                                                          
                                                                                                                          
-                                                                                                                         
+10.Create a view that lists all the plant names picked from all locations except ’West’ in the month of August.
                                                                                                                          
                                                                                                                          
                                                                                                                          

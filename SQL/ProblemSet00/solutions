@@ -38,6 +38,7 @@ ADAM WAYNE
 
 2)Select the Employee with the least salary
 select name from employee order by salary limit 1;
+select * from (select e_id,name, dense_rank() over (order by salary desc) top_sal from employee ) as a where a.top_sal<=3;
 
 JOHN HELLEN
 

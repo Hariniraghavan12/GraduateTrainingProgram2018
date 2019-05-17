@@ -31,6 +31,7 @@ insert into employee values("A156","NICK MARTIN","D03",50174,"A178");
 
 1)Select the Employee with the top three salaries
 select name from employee order by salary desc limit 3;
+select a.name from (select e_id,name, dense_rank() over (order by salary desc) top_sal from employee ) as a where a.top_sal<=3;
 
 TARA CUMMINGS
 PAUL VINCENT
@@ -38,7 +39,7 @@ ADAM WAYNE
 
 2)Select the Employee with the least salary
 select name from employee order by salary limit 1;
-select a.name from (select e_id,name, dense_rank() over (order by salary desc) top_sal from employee ) as a where a.top_sal<=3;
+select a.name from (select e_id,name, dense_rank() over (order by salary) low_sal from employee ) as a where a.low_sal=1;
 
 JOHN HELLEN
 
@@ -55,8 +56,7 @@ NATASHA STEVENS
 select distinct e.name,e1.managerid from employee e join employee e1 on e.e_id=e1.managerid;
                             or
 select e.name,e1.managerid from employee e join employee e1 on e.e_id=e1.managerid group by e.name;
-                            or
-select e.name,e.managerid from employee e join employee m on e.e_id=m.managerid group by e.name;
+                            
  
 ADAM JUSTIN|A187
 BRUCE WILLS|A178

@@ -55,6 +55,8 @@ NATASHA STEVENS
 select distinct e.name,e1.managerid from employee e join employee e1 on e.e_id=e1.managerid;
                             or
 select e.name,e1.managerid from employee e join employee e1 on e.e_id=e1.managerid group by e.name;
+                            or
+select e.name,e.managerid from employee e join employee m on e.e_id=m.managerid group by e.name;
  
 ADAM JUSTIN|A187
 BRUCE WILLS|A178

@@ -88,5 +88,92 @@ select * from reviewer;
 |  208 |  104 |     3 | 2011-01-02 |
 +------+------+-------+------------+
                                                        
+
+1.Find the titles of all movies directed by Steven Spielberg. (1 point possible)
+
+                                                        
+select mID,title from movie where director = 'Steven Spielberg';
++-----+-------------------------+
+| mID | title                   |
++-----+-------------------------+
+| 104 | E.T.                    |
+| 108 | Raiders of the Lost Ark |
++-----+-------------------------+   
+                                                         
+2.Find all years that have a movie that received a rating of 4 or 5, and sort them in increasing order. (1 point possible)
+
+select m.mID,m.title,ra.stars from movie m join rating ra on m.mID = ra.mID where ra.stars>=4 order by ra.stars;
++-----+-------------------------+-------+
+| mID | title                   | stars |
++-----+-------------------------+-------+
+| 101 | Gone with the Wind      |     4 |
+| 106 | Snow White              |     4 |
+| 108 | Raiders of the Lost Ark |     4 |
+| 108 | Raiders of the Lost Ark |     4 |
+| 106 | Snow White              |     5 |
+| 107 | Avatar                  |     5 |
++-----+-------------------------+-------+
+
+                                                         
+ 3.Find the titles of all movies that have no ratings. (1 point possible)
+                                                         
+  select m.mID,m.title from movie m left join rating ra on m.mID = ra.mID where ra.stars is NULL;
++-----+-----------+
+| mID | title     |
++-----+-----------+
+| 102 | Star Wars |
+| 105 | Titanic   |
++-----+-----------+
+                                                         
+ 4.Some reviewers didn't provide a date with their rating. 
+ Find the names of all reviewers who have ratings with a NULL value for the date. (1 point possible)     
+                                                         
+ select re.rID,re.name from reviewer re join rating ra on re.rID  = ra.rID where ra.ratingDate is NULL;
++-----+---------------+
+| rID | name          |
++-----+---------------+
+| 202 | Daniel Lewis  |
+| 205 | Chris Jackson |
++-----+---------------+
+                                                         
+ 5.Write a query to return the ratings data in a more readable format: 
+ reviewer name, movie title, stars, and ratingDate. Also, sort the data, 
+ first by reviewer name, then by movie title, and lastly by number of stars. (1 point possible)
+                                                         
+ select re.name,m.title,ra.stars,ra.ratingDate from rating ra join movie m on ra.mID = m.mID join reviewer re on ra.rID = re.rID order by re.name,m.title,ra.stars;
++------------------+-------------------------+-------+------------+
+| name             | title                   | stars | ratingDate |
++------------------+-------------------------+-------+------------+
+| Ashley White     | E.T.                    |     3 | 2011-01-02 |
+| Brittany Harris  | Raiders of the Lost Ark |     2 | 2011-01-30 |
+| Brittany Harris  | Raiders of the Lost Ark |     4 | 2011-01-12 |
+| Brittany Harris  | The Sound of Music      |     2 | 2011-01-20 |
+| Chris Jackson    | E.T.                    |     2 | 2011-01-22 |
+| Chris Jackson    | Raiders of the Lost Ark |     4 | NULL       |
+| Chris Jackson    | The Sound of Music      |     3 | 2011-01-27 |
+| Daniel Lewis     | Snow White              |     4 | NULL       |
+| Elizabeth Thomas | Avatar                  |     3 | 2011-01-15 |
+| Elizabeth Thomas | Snow White              |     5 | 2011-01-19 |
+| James Cameron    | Avatar                  |     5 | 2011-01-20 |
+| Mike Anderson    | Gone with the Wind      |     3 | 2011-01-09 |
+| Sarah Martinez   | Gone with the Wind      |     2 | 2011-01-22 |
+| Sarah Martinez   | Gone with the Wind      |     4 | 2011-01-27 |
++------------------+-------------------------+-------+------------+
+                                                         
+ 6.For all cases where the same reviewer rated the same movie twice and gave it a 
+ higher rating the second time, return the reviewer's name and the title of the movie. (1 point possible)
+
+ select re.name, m.title from reviewer re join (select rID,mID from rating group by rID,mID having count(rID)>1) as a on a.rID = re.rID join movie m on a.mID= m.mID ;
++-----------------+-------------------------+
+| name            | title                   |
++-----------------+-------------------------+
+| Sarah Martinez  | Gone with the Wind      |
+| Brittany Harris | Raiders of the Lost Ark |
++-----------------+-------------------------+
+                                                         
+                                                         
+
+                                                                                           
+                                                         
                                                          
                                                          

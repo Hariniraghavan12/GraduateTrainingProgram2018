@@ -227,4 +227,14 @@ select ra.mID,m.title,max(ra.stars) as stars from rating ra join movie m on ra.m
    
 11.For any rating where the reviewer is the same as the director of the movie, return the reviewer name, movie title, and number of stars. (1 point possible)
      
+   select re.name,m.title,ra.stars from rating ra join reviewer re on ra.rID = re.rID join movie m on ra.mID = m.mID where re.name = m.director;
++---------------+--------+-------+
+| name          | title  | stars |
++---------------+--------+-------+
+| James Cameron | Avatar |     5 |
++---------------+--------+-------+ 
+
+12.Return all reviewer names and movie names together in a single list, alphabetized.
+ (Sorting by the first name of the reviewer and first word in the title is fine; no need for special processing on last names or removing "The".) (1 point possible)
+   
    

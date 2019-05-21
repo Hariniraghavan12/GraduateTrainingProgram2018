@@ -259,4 +259,15 @@ select ra.mID,m.title,max(ra.stars) as stars from rating ra join movie m on ra.m
    
 13.Find the titles of all movies not reviewed by Chris Jackson. 
    
+  select m.title from movie m where m.mID not in (select ra.mID from rating ra join reviewer re on ra.rID = re.rID where re.name = 'chris jackson');
++--------------------+
+| title              |
++--------------------+
+| Gone with the Wind |
+| Star Wars          |
+| Titanic            |
+| Snow White         |
+| Avatar             |
++--------------------+
+   
    

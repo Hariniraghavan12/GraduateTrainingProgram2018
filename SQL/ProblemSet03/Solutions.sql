@@ -335,4 +335,16 @@ select re.name,m.title,ra.stars from rating ra join reviewer re on ra.rID = re.r
    along with the director name. Sort by director name, then movie title. 
    (As an extra challenge, try writing the query both with and without COUNT.) (1 point possible)
    
+select title,director from movie where director in (select director from movie group by director having count(director)>1) order by director,title;
++-------------------------+------------------+
+| title                   | director         |
++-------------------------+------------------+
+| Avatar                  | James Cameron    |
+| Titanic                 | James Cameron    |
+| E.T.                    | Steven Spielberg |
+| Raiders of the Lost Ark | Steven Spielberg |
++-------------------------+------------------+
    
+ 19. Find the movie(s) with the highest average rating. Return the movie title(s) and average rating. 
+   (Hint: This query is more difficult to write in SQLite than other systems; you might think of it as finding
+    the highest average rating and then choosing the movie(s) with that average rating.) 

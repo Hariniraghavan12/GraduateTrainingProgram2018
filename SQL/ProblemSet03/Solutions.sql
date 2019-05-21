@@ -214,5 +214,17 @@ select ra.mID,m.title,max(ra.stars) as stars from rating ra join movie m on ra.m
    
     0.05556667
    
-   10.Find the names of all reviewers who rated Gone with the Wind. (1 point possible)
+10.Find the names of all reviewers who rated Gone with the Wind. (1 point possible)
+   
+  select re.name,m.title,ra.stars from rating ra join reviewer re on ra.rID = re.rID join movie m on ra.mID = m.mID where m.title='Gone with the Wind';
++----------------+--------------------+-------+
+| name           | title              | stars |
++----------------+--------------------+-------+
+| Sarah Martinez | Gone with the Wind |     2 |
+| Sarah Martinez | Gone with the Wind |     4 |
+| Mike Anderson  | Gone with the Wind |     3 |
++----------------+--------------------+-------+
+   
+11.For any rating where the reviewer is the same as the director of the movie, return the reviewer name, movie title, and number of stars. (1 point possible)
+     
    

@@ -171,9 +171,48 @@ select m.mID,m.title,ra.stars from movie m join rating ra on m.mID = ra.mID wher
 | Brittany Harris | Raiders of the Lost Ark |
 +-----------------+-------------------------+
                                                          
+7.For each movie that has at least one rating, find the highest number of stars that movie received. 
+ Return the movie title and number of stars. Sort by movie title. (1 point possible)   
                                                          
-
+select ra.mID,m.title,max(ra.stars) as stars from rating ra join movie m on ra.mID = m.mID group by ra.mID order by m.title;
++------+-------------------------+-------+
+| mID  | title                   | stars |
++------+-------------------------+-------+
+|  107 | Avatar                  |     5 |
+|  104 | E.T.                    |     3 |
+|  101 | Gone with the Wind      |     4 |
+|  108 | Raiders of the Lost Ark |     4 |
+|  106 | Snow White              |     5 |
+|  103 | The Sound of Music      |     3 |
++------+-------------------------+-------+
                                                                                            
+8.For each movie, return the title and the 'rating spread', that is, the difference between highest and lowest 
+  ratings given to that movie. Sort by rating spread from highest to lowest, then by movie title. (1 point possible)   
                                                          
+  select ra.mID,m.title,max(ra.stars)-min(ra.stars) as rating_spread from rating ra join movie m on ra.mID = m.mID group by ra.mID order by rating_spread desc,m.title;
++------+-------------------------+---------------+
+| mID  | title                   | rating_spread |
++------+-------------------------+---------------+
+|  107 | Avatar                  |             2 |
+|  101 | Gone with the Wind      |             2 |
+|  108 | Raiders of the Lost Ark |             2 |
+|  104 | E.T.                    |             1 |
+|  106 | Snow White              |             1 |
+|  103 | The Sound of Music      |             1 |
++------+-------------------------+---------------+                                                       
                                                          
-                                                         
+ 9.Find the difference between the average rating of movies released before 1980 and the average rating of movies released after 1980.
+  (Make sure to calculate the average rating for each movie, then the average of those averages for movies before 1980 and movies 
+  after. Don't just calculate the overall average rating before and after 1980.) (1 point possible)  
+   
+  select 
+   (select avg(a.av1) from 
+      (select ra.mID,m.year,avg(ra.stars) as av1 from rating ra join movie m on ra.mID = m.mID group by ra.mID )as a where a.year<1980)
+   - 
+   (select avg(b.av2) from 
+      (select ra.mID,m.year,avg(ra.stars) as av2 from rating ra join movie m on ra.mID = m.mID group by ra.mID) as b where b.year>1980);
+   
+    0.05556667
+   
+   10.Find the names of all reviewers who rated Gone with the Wind. (1 point possible)
+   

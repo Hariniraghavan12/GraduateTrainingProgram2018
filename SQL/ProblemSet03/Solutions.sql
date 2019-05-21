@@ -237,4 +237,26 @@ select ra.mID,m.title,max(ra.stars) as stars from rating ra join movie m on ra.m
 12.Return all reviewer names and movie names together in a single list, alphabetized.
  (Sorting by the first name of the reviewer and first word in the title is fine; no need for special processing on last names or removing "The".) (1 point possible)
    
+ select m.title,re.name from rating ra join reviewer re on ra.rID = re.rID join movie m on ra.mID = m.mID order by re.name,m.title;
++-------------------------+------------------+
+| title                   | name             |
++-------------------------+------------------+
+| E.T.                    | Ashley White     |
+| Raiders of the Lost Ark | Brittany Harris  |
+| Raiders of the Lost Ark | Brittany Harris  |
+| The Sound of Music      | Brittany Harris  |
+| E.T.                    | Chris Jackson    |
+| Raiders of the Lost Ark | Chris Jackson    |
+| The Sound of Music      | Chris Jackson    |
+| Snow White              | Daniel Lewis     |
+| Avatar                  | Elizabeth Thomas |
+| Snow White              | Elizabeth Thomas |
+| Avatar                  | James Cameron    |
+| Gone with the Wind      | Mike Anderson    |
+| Gone with the Wind      | Sarah Martinez   |
+| Gone with the Wind      | Sarah Martinez   |
++-------------------------+------------------+
+   
+13.Find the titles of all movies not reviewed by Chris Jackson. 
+   
    

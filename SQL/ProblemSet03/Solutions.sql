@@ -270,4 +270,24 @@ select ra.mID,m.title,max(ra.stars) as stars from rating ra join movie m on ra.m
 | Avatar             |
 +--------------------+
    
+14.For all pairs of reviewers such that both reviewers gave a rating to the same movie, return the names of both reviewers. 
+  Eliminate duplicates, don't pair reviewers with themselves, and include each pair only once.
+  For each pair, return the names in the pair in alphabetical order. (1 point possible)
    
+  select distinct m.title, re.name, ra.mID from rating ra join reviewer re on ra.rID = re.rID join movie m on ra.mID = m.mID where ra.rID in(select rID from rating group by rID,mID) order by m.mID;
++-------------------------+------------------+------+
+| title                   | name             | mID  |
++-------------------------+------------------+------+
+| Gone with the Wind      | Mike Anderson    |  101 |
+| Gone with the Wind      | Sarah Martinez   |  101 |
+| The Sound of Music      | Brittany Harris  |  103 |
+| The Sound of Music      | Chris Jackson    |  103 |
+| E.T.                    | Ashley White     |  104 |
+| E.T.                    | Chris Jackson    |  104 |
+| Snow White              | Daniel Lewis     |  106 |
+| Snow White              | Elizabeth Thomas |  106 |
+| Avatar                  | James Cameron    |  107 |
+| Avatar                  | Elizabeth Thomas |  107 |
+| Raiders of the Lost Ark | Brittany Harris  |  108 |
+| Raiders of the Lost Ark | Chris Jackson    |  108 |
++-------------------------+------------------+------+

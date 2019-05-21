@@ -323,4 +323,16 @@ select re.name,m.title,ra.stars from rating ra join reviewer re on ra.rID = re.r
 17.Find the names of all reviewers who have contributed three or more ratings.
  (As an extra challenge, try writing the query without HAVING or without COUNT.) 
    
- 
+  select re.name from reviewer re join rating ra on re.rID = ra.rID group by re.rID having count(ra.stars)>2;
++-----------------+
+| name            |
++-----------------+
+| Brittany Harris |
+| Chris Jackson   |
++-----------------+
+   
+ 18.Some directors directed more than one movie. For all such directors, return the titles of all movies directed by them,
+   along with the director name. Sort by director name, then movie title. 
+   (As an extra challenge, try writing the query both with and without COUNT.) (1 point possible)
+   
+   

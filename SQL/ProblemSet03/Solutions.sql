@@ -291,3 +291,36 @@ select ra.mID,m.title,max(ra.stars) as stars from rating ra join movie m on ra.m
 | Raiders of the Lost Ark | Brittany Harris  |  108 |
 | Raiders of the Lost Ark | Chris Jackson    |  108 |
 +-------------------------+------------------+------+
+
+15.For each rating that is the lowest (fewest stars) currently in the database, return the reviewer name, movie title, and number of stars. (1 point possible)
+   
+select re.name,m.title,ra.stars from rating ra join reviewer re on ra.rID = re.rID join movie m on ra.mID = m.mID where ra.stars =(select min(stars) as low from rating);
++-----------------+-------------------------+-------+
+| name            | title                   | stars |
++-----------------+-------------------------+-------+
+| Sarah Martinez  | Gone with the Wind      |     2 |
+| Brittany Harris | The Sound of Music      |     2 |
+| Brittany Harris | Raiders of the Lost Ark |     2 |
+| Chris Jackson   | E.T.                    |     2 |
++-----------------+-------------------------+-------+
+   
+   
+16.List movie titles and average ratings, from highest-rated to lowest-rated. 
+ If two or more movies have the same average rating, list them in alphabetical order. 
+   
+ select m.title,avg(ra.stars) as average from rating ra join movie m on ra.mID = m.mID group by m.mID order by average desc,m.title;
++-------------------------+---------+
+| title                   | average |
++-------------------------+---------+
+| Snow White              |  4.5000 |
+| Avatar                  |  4.0000 |
+| Raiders of the Lost Ark |  3.3333 |
+| Gone with the Wind      |  3.0000 |
+| E.T.                    |  2.5000 |
+| The Sound of Music      |  2.5000 |
++-------------------------+---------+
+   
+17.Find the names of all reviewers who have contributed three or more ratings.
+ (As an extra challenge, try writing the query without HAVING or without COUNT.) 
+   
+ 

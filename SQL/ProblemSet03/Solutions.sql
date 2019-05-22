@@ -361,6 +361,13 @@ select title,director from movie where director in (select director from movie g
    (Hint: This query may be more difficult to write in SQLite than other systems; 
     you might think of it as finding the lowest average rating and then choosing the movie(s) with that average rating.) (1 point possible)
    
+ select b.title,b.avg1 from (select a.title,a.avg1,dense_rank() over (order by a.avg1) as ran from(select title,avg(stars)as avg1 from movie m inner join rating r on  r.mID=m.mID group by title order by avg1 asc) as a) as b where b.ran=1;
++--------------------+--------+
+| title              | avg1   |
++--------------------+--------+
+| The Sound of Music | 2.5000 |
+| E.T.               | 2.5000 |
++--------------------+--------+
    
  21.For each director, return the director's name together with the title(s) of the movie(s) they directed that 
    received the highest rating among all of their movies, and the value of that rating. 

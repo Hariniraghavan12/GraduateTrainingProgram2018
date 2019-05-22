@@ -348,3 +348,17 @@ select title,director from movie where director in (select director from movie g
  19. Find the movie(s) with the highest average rating. Return the movie title(s) and average rating. 
    (Hint: This query is more difficult to write in SQLite than other systems; you might think of it as finding
     the highest average rating and then choosing the movie(s) with that average rating.) 
+   
+   select a.title, max(a.avg1) from (select title,avg(stars)as avg1 from movie m inner join rating r on  r.mID=m.mID group by title order by avg1 desc) as a;
++------------+-------------+
+| title      | max(a.avg1) |
++------------+-------------+
+| Snow White |      4.5000 |
++------------+-------------+
+   
+   
+ 20. Find the movie(s) with the lowest average rating. Return the movie title(s) and average rating.
+   (Hint: This query may be more difficult to write in SQLite than other systems; 
+    you might think of it as finding the lowest average rating and then choosing the movie(s) with that average rating.) (1 point possible)
+
+   

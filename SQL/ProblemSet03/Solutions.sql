@@ -360,5 +360,20 @@ select title,director from movie where director in (select director from movie g
  20. Find the movie(s) with the lowest average rating. Return the movie title(s) and average rating.
    (Hint: This query may be more difficult to write in SQLite than other systems; 
     you might think of it as finding the lowest average rating and then choosing the movie(s) with that average rating.) (1 point possible)
+   
+   
+ 21.For each director, return the director's name together with the title(s) of the movie(s) they directed that 
+   received the highest rating among all of their movies, and the value of that rating. 
+   Ignore movies whose director is NULL. (1 point possible)
+   
+   select m.director,m.title,max(ra.stars) from rating ra join movie m on m.mID = ra.mID group by m.director having m.director is not null;
++------------------+-------------------------+---------------+
+| director         | title                   | max(ra.stars) |
++------------------+-------------------------+---------------+
+| Victor Fleming   | Gone with the Wind      |             4 |
+| Robert Wise      | The Sound of Music      |             3 |
+| Steven Spielberg | Raiders of the Lost Ark |             4 |
+| James Cameron    | Avatar                  |             5 |
++------------------+-------------------------+---------------+
 
    

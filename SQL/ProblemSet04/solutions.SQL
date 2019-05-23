@@ -176,4 +176,35 @@ select h.name from Highschooler h join Friend f on h.ID = f.ID1 where f.ID2 in(s
 2.For every student who likes someone 2 or more grades younger than themselves, 
 return that student's name and grade, and the name and grade of the student they like. 
 
+select h.name,l.id1,h.grade,h2.name,l.id2,h2.grade,h.grade-h2.grade from Likes l join Highschooler h on l.ID1= h.ID join  Highschooler h2 on l.ID2=h2.id;
++-----------+------+-------+-----------+------+-------+------------------+
+| name      | id1  | grade | name      | id2  | grade | h.grade-h2.grade |
++-----------+------+-------+-----------+------+-------+------------------+
+| Cassandra | 1709 |     9 | Gabriel   | 1689 |     9 |                0 |
+| Gabriel   | 1689 |     9 | Cassandra | 1709 |     9 |                0 |
+| Andrew    | 1782 |    10 | Cassandra | 1709 |     9 |                1 |
+| John      | 1025 |    12 | Haley     | 1101 |    10 |                2 |
+| Brittany  | 1641 |    10 | Kris      | 1468 |    10 |                0 |
+| Alexis    | 1247 |    11 | Kris      | 1468 |    10 |                1 |
+| Gabriel   | 1911 |    11 | Alexis    | 1247 |    11 |                0 |
+| Kyle      | 1934 |    12 | Jessica   | 1501 |    11 |                1 |
+| Austin    | 1316 |    11 | Jordan    | 1304 |    12 |               -1 |
+| Jessica   | 1501 |    11 | Kyle      | 1934 |    12 |               -1 |
++-----------+------+-------+-----------+------+-------+------------------+
+10 rows in set (0.03 sec)
+
+select a.name1,a.grade1,a.name2,a.grade2 from(select h.name as name1,l.id1,h.grade as grade1,h2.name as name2,l.id2,h2.grade as grade2,(h.grade-h2.grade) as diff from Likes l join Highschooler h on l.ID1= h.ID join  Highschooler h2 on l.ID2=h2.id) as a where a.diff>=2;
++-------+--------+-------+--------+
+| name1 | grade1 | name2 | grade2 |
++-------+--------+-------+--------+
+| John  |     12 | Haley |     10 |
++-------+--------+-------+--------+
+
+3.For every pair of students who both like each other, return the name and grade of both students.
+Include each pair only once, with the two names in alphabetical order
+
+
+
+
+
 

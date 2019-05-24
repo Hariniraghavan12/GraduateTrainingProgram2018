@@ -222,7 +222,17 @@ select distinct h.name,h.grade,h2.name,h2.grade from Likes l join Highschooler h
 4.Find all students who do not appear in the Likes table (as a student who likes or is liked) and return their names and grades.
 Sort by grade, then by name within each grade
 
+select h.ID,h.name,h.grade from highschooler h where ID not in(select ID1 from likes union select ID2 from likes) order by h.grade,h.name;
++------+---------+-------+
+| ID   | name    | grade |
++------+---------+-------+
+| 1510 | Jordan  |     9 |
+| 1381 | Tiffany |     9 |
+| 1661 | Logan   |    12 |
++------+---------+-------+
 
+5.For every situation where student A likes student B, but we have no information about whom B likes 
+(that is, B does not appear as an ID1 in the Likes table), return A and B's names and grades. 
 
 
 

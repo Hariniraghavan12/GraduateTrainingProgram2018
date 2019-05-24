@@ -282,3 +282,6 @@ select h.ID,h.name,h.grade,h1.ID,h1.name,h1.grade from friend f join highschoole
 7.For each student A who likes a student B where the two are not friends, find if they have a friend C in common 
 (who can introduce them!). For all such trios, return the name and grade of A, B, and C. 
 
+8.Find the difference between the number of students in the school and the number of different first names. 
+
+

@@ -291,5 +291,14 @@ select (select count(*) from highschooler) - (select count(a.c) from (select cou
 +--------+
 
 9.Find the name and grade of all students who are liked by more than one other student.
+ select name,grade from highschooler where ID in(select ID2 from likes group by ID2 having count(*)>1);
++-----------+-------+
+| name      | grade |
++-----------+-------+
+| Cassandra |     9 |
+| Kris      |    10 |
++-----------+-------+
 
+10.For every situation where student A likes student B, but student B likes a different student C,
+return the names and grades of A, B, and C.
 

@@ -203,8 +203,24 @@ select a.name1,a.grade1,a.name2,a.grade2 from(select h.name as name1,l.id1,h.gra
 3.For every pair of students who both like each other, return the name and grade of both students.
 Include each pair only once, with the two names in alphabetical order
 
+select distinct h.name,h.grade,h2.name,h2.grade from Likes l join Highschooler h on l.ID1 = h.ID join Highschooler h2 on l.ID2= h2.ID order by h.name;
++-----------+-------+-----------+-------+
+| name      | grade | name      | grade |
++-----------+-------+-----------+-------+
+| Alexis    |    11 | Kris      |    10 |
+| Andrew    |    10 | Cassandra |     9 |
+| Austin    |    11 | Jordan    |    12 |
+| Brittany  |    10 | Kris      |    10 |
+| Cassandra |     9 | Gabriel   |     9 |
+| Gabriel   |     9 | Cassandra |     9 |
+| Gabriel   |    11 | Alexis    |    11 |
+| Jessica   |    11 | Kyle      |    12 |
+| John      |    12 | Haley     |    10 |
+| Kyle      |    12 | Jessica   |    11 |
++-----------+-------+-----------+-------+
 
-
+4.Find all students who do not appear in the Likes table (as a student who likes or is liked) and return their names and grades.
+Sort by grade, then by name within each grade
 
 
 

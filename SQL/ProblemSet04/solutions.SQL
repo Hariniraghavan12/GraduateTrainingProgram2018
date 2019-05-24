@@ -283,5 +283,12 @@ select h.ID,h.name,h.grade,h1.ID,h1.name,h1.grade from friend f join highschoole
 (who can introduce them!). For all such trios, return the name and grade of A, B, and C. 
 
 8.Find the difference between the number of students in the school and the number of different first names. 
+select (select count(*) from highschooler) - (select count(a.c) from (select count(*) as c from highschooler group by name) as a) as countt;
++--------+
+| countt |
++--------+
+|      2 |
++--------+
 
+9.
 

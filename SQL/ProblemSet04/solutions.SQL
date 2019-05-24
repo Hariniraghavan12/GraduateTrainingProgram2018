@@ -234,5 +234,18 @@ select h.ID,h.name,h.grade from highschooler h where ID not in(select ID1 from l
 5.For every situation where student A likes student B, but we have no information about whom B likes 
 (that is, B does not appear as an ID1 in the Likes table), return A and B's names and grades. 
 
+select l.ID1,h.name,h.grade,l.ID2,h1.name,h1.grade from likes l join highschooler h on h.ID = l.ID1 join highschooler h1 on h1.ID = l.ID2 where l.ID2 not in(select ID1 from likes);
++------+----------+-------+------+--------+-------+
+| ID1  | name     | grade | ID2  | name   | grade |
++------+----------+-------+------+--------+-------+
+| 1025 | John     |    12 | 1101 | Haley  |    10 |
+| 1641 | Brittany |    10 | 1468 | Kris   |    10 |
+| 1247 | Alexis   |    11 | 1468 | Kris   |    10 |
+| 1316 | Austin   |    11 | 1304 | Jordan |    12 |
++------+----------+-------+------+--------+-------+
+
+6.Find names and grades of students who only have friends in the same grade. 
+Return the result sorted by grade, then by name within each grade. 
+
 
 

@@ -247,5 +247,38 @@ select l.ID1,h.name,h.grade,l.ID2,h1.name,h1.grade from likes l join highschoole
 6.Find names and grades of students who only have friends in the same grade. 
 Return the result sorted by grade, then by name within each grade. 
 
+select h.ID,h.name,h.grade,h1.ID,h1.name,h1.grade from friend f join highschooler h on f.ID1=h.ID join highschooler h1 on f.ID2 = h1.ID where h.grade=h1.grade order by h.grade,h.name;
++------+-----------+-------+------+-----------+-------+
+| ID   | name      | grade | ID   | name      | grade |
++------+-----------+-------+------+-----------+-------+
+| 1709 | Cassandra |     9 | 1689 | Gabriel   |     9 |
+| 1689 | Gabriel   |     9 | 1709 | Cassandra |     9 |
+| 1689 | Gabriel   |     9 | 1510 | Jordan    |     9 |
+| 1510 | Jordan    |     9 | 1381 | Tiffany   |     9 |
+| 1510 | Jordan    |     9 | 1689 | Gabriel   |     9 |
+| 1381 | Tiffany   |     9 | 1510 | Jordan    |     9 |
+| 1782 | Andrew    |    10 | 1468 | Kris      |    10 |
+| 1641 | Brittany  |    10 | 1468 | Kris      |    10 |
+| 1641 | Brittany  |    10 | 1101 | Haley     |    10 |
+| 1101 | Haley     |    10 | 1641 | Brittany  |    10 |
+| 1101 | Haley     |    10 | 1468 | Kris      |    10 |
+| 1468 | Kris      |    10 | 1101 | Haley     |    10 |
+| 1468 | Kris      |    10 | 1641 | Brittany  |    10 |
+| 1468 | Kris      |    10 | 1782 | Andrew    |    10 |
+| 1247 | Alexis    |    11 | 1911 | Gabriel   |    11 |
+| 1247 | Alexis    |    11 | 1501 | Jessica   |    11 |
+| 1911 | Gabriel   |    11 | 1501 | Jessica   |    11 |
+| 1911 | Gabriel   |    11 | 1247 | Alexis    |    11 |
+| 1501 | Jessica   |    11 | 1247 | Alexis    |    11 |
+| 1501 | Jessica   |    11 | 1911 | Gabriel   |    11 |
+| 1025 | John      |    12 | 1661 | Logan     |    12 |
+| 1304 | Jordan    |    12 | 1661 | Logan     |    12 |
+| 1304 | Jordan    |    12 | 1934 | Kyle      |    12 |
+| 1934 | Kyle      |    12 | 1304 | Jordan    |    12 |
+| 1661 | Logan     |    12 | 1025 | John      |    12 |
+| 1661 | Logan     |    12 | 1304 | Jordan    |    12 |
++------+-----------+-------+------+-----------+-------+
 
+7.For each student A who likes a student B where the two are not friends, find if they have a friend C in common 
+(who can introduce them!). For all such trios, return the name and grade of A, B, and C. 
 

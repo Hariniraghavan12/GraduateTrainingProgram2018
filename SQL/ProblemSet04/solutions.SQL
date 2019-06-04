@@ -282,6 +282,21 @@ select h.ID,h.name,h.grade,h1.ID,h1.name,h1.grade from friend f join highschoole
 7.For each student A who likes a student B where the two are not friends, find if they have a friend C in common 
 (who can introduce them!). For all such trios, return the name and grade of A, B, and C. 
 
+select h1.name,h1.grade,h2.name,h2.grade ,h3.name,h3.grade from Highschooler h1 
+inner join likes l1 on l1.ID1=h1.ID 
+inner join Highschooler h2 on h2.ID=l1.ID2 and 
+l1.ID2 not in (select ID2 from Friend where ID1 = H1.ID) 
+inner join friend f1 on f1.ID1=l1.ID1 
+inner join friend f2 on f2.ID2=l1.ID2 
+inner join Highschooler h3 on h3.ID=f1.ID2 where  f1.ID2=f2.ID1;
++--------+-------+-----------+-------+---------+-------+
+| name   | grade | name      | grade | name    | grade |
++--------+-------+-----------+-------+---------+-------+
+| Andrew |    10 | Cassandra |     9 | Gabriel |     9 |
+| Austin |    11 | Jordan    |    12 | Andrew  |    10 |
+| Austin |    11 | Jordan    |    12 | Kyle    |    12 |
++--------+-------+-----------+-------+---------+-------+
+
 8.Find the difference between the number of students in the school and the number of different first names. 
 select (select count(*) from highschooler) - (select count(a.c) from (select count(*) as c from highschooler group by name) as a) as countt;
 +--------+
@@ -301,5 +316,18 @@ select (select count(*) from highschooler) - (select count(a.c) from (select cou
 
 10.For every situation where student A likes student B, but student B likes a different student C,
 return the names and grades of A, B, and C.
+ select h1.name,h1.grade,h2.name,h2.grade,h3.name,h3.grade from Highschooler h1 
+ inner join likes l1 on l1.ID1=h1.ID inner join Highschooler h2 on h2.ID=l1.ID2 
+ inner join likes l2 on l1.ID1=l2.ID2 and l1.ID2<>l2.ID1 
+ inner join Highschooler h3 on h3.ID=l2.ID1;
+ 
+ +-----------+-------+---------+-------+---------+-------+
+| name      | grade | name    | grade | name    | grade |
++-----------+-------+---------+-------+---------+-------+
+| Cassandra |     9 | Gabriel |     9 | Andrew  |    10 |
+| Alexis    |    11 | Kris    |    10 | Gabriel |    11 |
++-----------+-------+---------+-------+---------+-------+
 
+11.Find those students for whom all of their friends are in different grades from themselves.
+Return the students' names and grades.
 

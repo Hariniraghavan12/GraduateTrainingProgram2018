@@ -331,3 +331,27 @@ return the names and grades of A, B, and C.
 11.Find those students for whom all of their friends are in different grades from themselves.
 Return the students' names and grades.
 
+ select h.name,h.grade,h1.name,h1.grade from highschooler h join friend f on h.ID=f.ID1 join highschooler h1 on h1.ID = f.ID2 
+ where h.grade<>h1.grade;
++-----------+-------+-----------+-------+
+| name      | grade | name      | grade |
++-----------+-------+-----------+-------+
+| Andrew    |    10 | Gabriel   |     9 |
+| Alexis    |    11 | Tiffany   |     9 |
+| Alexis    |    11 | Cassandra |     9 |
+| Gabriel   |     9 | Andrew    |    10 |
+| Austin    |    11 | Andrew    |    10 |
+| Jordan    |    12 | Andrew    |    10 |
+| Tiffany   |     9 | Alexis    |    11 |
+| Cassandra |     9 | Alexis    |    11 |
+| Andrew    |    10 | Austin    |    11 |
+| Kyle      |    12 | Austin    |    11 |
+| Kyle      |    12 | Jessica   |    11 |
+| Andrew    |    10 | Jordan    |    12 |
+| Jessica   |    11 | Kyle      |    12 |
+| Austin    |    11 | Kyle      |    12 |
++-----------+-------+-----------+-------+
+
+12.What is the average number of friends per student? (Your result should be just one number.) (1 point possible)
+
+

@@ -353,5 +353,15 @@ Return the students' names and grades.
 +-----------+-------+-----------+-------+
 
 12.What is the average number of friends per student? (Your result should be just one number.) (1 point possible)
+select avg(a.cnt) as average from (select ID1,count(*) as cnt from friend group by ID1) as a;
++---------+
+| average |
++---------+
+|  2.5000 |
++---------+
+
+13.Find the number of students who are either friends with Cassandra or are friends of friends of Cassandra.
+Do not count Cassandra, even though technically she is a friend of a friend.
+
 
 
